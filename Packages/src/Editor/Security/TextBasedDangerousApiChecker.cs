@@ -48,6 +48,20 @@ namespace io.github.hatayama.uLoopMCP
             (@"\bAssetDatabase\.DeleteAsset\b",        "AssetDatabase.DeleteAsset"),
             (@"\bAssetDatabase\.MoveAsset\b",          "AssetDatabase.MoveAsset"),
             (@"\bAssetDatabase\.CopyAsset\b",          "AssetDatabase.CopyAsset"),
+            // 環境変数・プロセス終了
+            (@"\bEnvironment\.FailFast\b",             "Environment.FailFast"),
+            (@"\bEnvironment\.SetEnvironmentVariable\b", "Environment.SetEnvironmentVariable"),
+            // 危険なリフレクション（任意コード実行に繋がる）
+            (@"\bType\.InvokeMember\b",                "Type.InvokeMember"),
+            (@"\bMethodInfo\.Invoke\b",                "MethodInfo.Invoke"),
+            (@"\bConstructorInfo\.Invoke\b",           "ConstructorInfo.Invoke"),
+            (@"\bActivator\.CreateInstance\b",         "Activator.CreateInstance"),
+            // スレッド操作
+            (@"\bThread\.Abort\b",                     "Thread.Abort"),
+            (@"\bThread\.Suspend\b",                   "Thread.Suspend"),
+            (@"\bThread\.Resume\b",                    "Thread.Resume"),
+            // GC設定変更
+            (@"\bGCSettings\.LatencyMode\b",           "GCSettings.LatencyMode"),
         };
 
         /// <summary>

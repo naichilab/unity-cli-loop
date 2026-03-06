@@ -157,8 +157,8 @@ namespace io.github.hatayama.uLoopMCP
         public const string ERROR_MESSAGE_DUPLICATE_ASMDEF = "Duplicate asmdef assembly name detected. Unity may not start compilation until duplicates are removed.";
         
         // Execution error messages
-        public const string ERROR_ROSLYN_REQUIRED = "ROSLYN_REQUIRED";
-        public const string ERROR_MESSAGE_ROSLYN_REQUIRED = "Dynamic code execution requires Roslyn. Please enable it from Security Settings.";
+        public const string ERROR_ROSLYN_REQUIRED = "COMPILER_NOT_REGISTERED";
+        public const string ERROR_MESSAGE_ROSLYN_REQUIRED = "Dynamic code execution is unavailable. Compilation provider is not registered.";
         public const string ERROR_MESSAGE_EXECUTION_IN_PROGRESS = "Another execution is already in progress";
         public const string ERROR_MESSAGE_EXECUTION_CANCELLED = "Execution was cancelled or timed out";
         public const string ERROR_MESSAGE_NO_COMPILED_ASSEMBLY = "No compiled assembly provided";

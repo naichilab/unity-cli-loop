@@ -35,7 +35,13 @@ namespace io.github.hatayama.uLoopMCP
         /// Unityメインスレッドから呼ぶと AssemblyBuilder の buildFinished コールバックと
         /// デッドロックする可能性があります。ExecuteCodeAsync() を使用してください。
         /// </summary>
-        [System.Obsolete("Use ExecuteCodeAsync() instead. Calling from the Unity main thread may deadlock with AssemblyBuilder.buildFinished.")]
+        /// <summary>
+        /// 同期版コード実行（使用禁止）
+        /// AssemblyBuilder.buildFinished はメインスレッドで呼ばれるため、
+        /// メインスレッドから GetAwaiter().GetResult() を呼ぶとデッドロックします。
+        /// 必ず ExecuteCodeAsync() を使用してください。
+        /// </summary>
+        [System.Obsolete("ExecuteCode() is disabled to prevent deadlock. Use ExecuteCodeAsync() instead.", error: true)]
         public ExecutionResult ExecuteCode(
             string code,
             string className = DynamicCodeConstants.DEFAULT_CLASS_NAME,
@@ -43,66 +49,12 @@ namespace io.github.hatayama.uLoopMCP
             CancellationToken cancellationToken = default,
             bool compileOnly = false)
         {
-            string correlationId = McpConstants.GenerateCorrelationId();
-            Stopwatch stopwatch = Stopwatch.StartNew();
-
-            try
+            return new ExecutionResult
             {
-                // Level 0: Compilation and execution are prohibited
-                if (_securityLevel == DynamicCodeSecurityLevel.Disabled)
-                {
-                    return CreateSecurityBlockedResult(
-                        McpConstants.ERROR_COMPILATION_DISABLED_LEVEL0,
-                        McpConstants.ERROR_MESSAGE_COMPILATION_DISABLED_LEVEL0);
-                }
-
-                LogExecutionStart(className, parameters, code, compileOnly, correlationId);
-
-                // Phase 1: Security Validation
-                ExecutionResult securityResult = PerformSecurityValidation(code, correlationId, stopwatch);
-                if (!securityResult.Success) return securityResult;
-
-                // Phase 2: Compilation (blocked at Level 0)
-                if (_securityLevel == DynamicCodeSecurityLevel.Disabled)
-                {
-                    return CreateSecurityBlockedResult(
-                        McpConstants.ERROR_COMPILATION_DISABLED_LEVEL0,
-                        McpConstants.ERROR_MESSAGE_COMPILATION_DISABLED_LEVEL0);
-                }
-                CompilationResult compilationResult = CompileCodeAsync(code, className, correlationId, cancellationToken).GetAwaiter().GetResult();
-                ExecutionResult compilationErrorResult = HandleCompilationResult(compilationResult, stopwatch);
-                if (compilationErrorResult != null) return compilationErrorResult;
-
-                // Phase 3: Check Compile-Only Mode
-                if (compileOnly)
-                {
-                    return CreateCompileOnlySuccessResult(compilationResult, correlationId, stopwatch);
-                }
-
-                // Runtime Guard: Level 0 blocks execution (defensive; should be caught earlier)
-                if (_securityLevel == DynamicCodeSecurityLevel.Disabled)
-                {
-                    return CreateSecurityBlockedResult(
-                        McpConstants.ERROR_COMPILATION_DISABLED_LEVEL0,
-                        McpConstants.ERROR_MESSAGE_COMPILATION_DISABLED_LEVEL0);
-                }
-
-                // Phase 4: Execution
-                ExecutionResult executionResult = PerformExecution(
-                    compilationResult.CompiledAssembly,
-                    className,
-                    parameters,
-                    correlationId,
-                    cancellationToken,
-                    stopwatch);
-
-                LogExecutionComplete(executionResult, correlationId, stopwatch);
-                return executionResult;
-            }
-            catch (Exception ex)
-            {
-                return HandleExecutionException(ex, correlationId, stopwatch);
-            }
+                Success = false,
+                ErrorMessage = "ExecuteCode() is disabled. Use ExecuteCodeAsync() instead.",
+                ExecutionTime = TimeSpan.Zero
+            };
         }
 
         private void LogExecutionStart(string className, object[] parameters, string code, bool compileOnly, string correlationId)
@@ -195,7 +147,7 @@ namespace io.github.hatayama.uLoopMCP
         }
 
         /// <summary>Asynchronous Code Execution</summary>
-#pragma warning disable CS1998 // Async method lacks 'await' operators (Occurs only when Roslyn is not available)
+#pragma warning disable CS1998 // Async method lacks 'await' operators
         public async Task<ExecutionResult> ExecuteCodeAsync(
             string code,
             string className = DynamicCodeConstants.DEFAULT_CLASS_NAME,

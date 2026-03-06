@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 namespace io.github.hatayama.uLoopMCP
 {
     /// <summary>
-    /// Stub implementation for DynamicCodeExecutor when Roslyn is disabled
-    /// Minimal implementation that always returns a 'Roslyn Required' error
+    /// Stub implementation for DynamicCodeExecutor when the compilation provider is not registered
+    /// Minimal implementation that always returns a 'Compilation Provider Not Registered' error
     /// Related classes: IDynamicCodeExecutor, DynamicCodeExecutor, DynamicCodeExecutorFactory
     /// </summary>
     public class DynamicCodeExecutorStub : IDynamicCodeExecutor
@@ -19,7 +19,7 @@ namespace io.github.hatayama.uLoopMCP
             _statistics = new ExecutionStatistics();
         }
 
-        /// <summary>Execute code (always returns a Roslyn required error)</summary>
+        /// <summary>Execute code (always returns a compilation provider not registered error)</summary>
         public ExecutionResult ExecuteCode(
             string code,
             string className = DynamicCodeConstants.DEFAULT_CLASS_NAME,
@@ -30,7 +30,7 @@ namespace io.github.hatayama.uLoopMCP
             return CreateRoslynRequiredResult();
         }
 
-        /// <summary>Execute code asynchronously (always returns a Roslyn required error)</summary>
+        /// <summary>Execute code asynchronously (always returns a compilation provider not registered error)</summary>
         public async Task<ExecutionResult> ExecuteCodeAsync(
             string code,
             string className = DynamicCodeConstants.DEFAULT_CLASS_NAME,

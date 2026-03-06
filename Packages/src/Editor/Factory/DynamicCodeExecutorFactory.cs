@@ -25,7 +25,7 @@ namespace io.github.hatayama.uLoopMCP.Factory
                     },
                     correlationId,
                     "Dynamic code execution provider was not registered",
-                    "Verify Roslyn assembly loading and define configuration"
+                    "Verify compilation provider registration (UnityAssemblyBuilderRegistration)"
                 );
 
                 return new DynamicCodeExecutorStub();

@@ -55,7 +55,7 @@ NG:   ""Parameters"": ""{}""")]
         /// <summary>Compile only (do not execute)</summary>
         [Description(@"Compile only (no execution).
 
-- Uses Roslyn validation to surface diagnostics
+- Uses built-in compiler validation to surface diagnostics
 - For new MonoBehaviours: create .cs → compile (mcp__uLoopMCP__compile with ForceRecompile=false) → ensure ErrorCount=0 → AddComponent")]
         public bool CompileOnly { get; set; } = false;
     }

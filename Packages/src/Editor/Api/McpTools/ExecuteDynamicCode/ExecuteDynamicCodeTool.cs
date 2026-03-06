@@ -108,9 +108,8 @@ See examples at {project_root}/.claude/skills/uloop-execute-dynamic-code/example
                     };
                 }
                 
-                // Level 1: In Restricted mode, delegate to Roslyn-based validation
-                // Remove regex-based checks, SecurityValidator of RoslynCompiler handles this
-                // This allows proper handling of user-defined classes (Assembly-CSharp)
+                // Level 1: In Restricted mode, TextBasedDangerousApiChecker performs pre-compile validation
+                // Detailed diagnostics are surfaced via the built-in compiler (AssemblyBuilder)
                 
                 // Retrieve code
                 string originalCode = parameters.Code ?? "";
