@@ -30,7 +30,9 @@ Don’t:
 - AssetDatabase.CreateFolder / file writes
 - Create/edit .cs/.asmdef (use Terminal/IDE instead)
 
-Need files/dirs? Run terminal commands.")]
+Need files/dirs? Run terminal commands.
+
+Security note: ‘Restricted’ mode is a guardrail against accidental dangerous API use by LLM-generated code, not a full sandbox. Indirect calls via reflection or local variables are not blocked.")]
         public string Code { get; set; } = "";
         
         /// <summary>Runtime parameters (advanced; usually unnecessary)</summary>

@@ -150,7 +150,7 @@ namespace io.github.hatayama.uLoopMCP
             string description = currentLevel switch
             {
                 DynamicCodeSecurityLevel.Disabled => "Level 0: Code execution completely disabled (safest)",
-                DynamicCodeSecurityLevel.Restricted => "Level 1: Dangerous APIs blocked (recommended)",
+                DynamicCodeSecurityLevel.Restricted => "Level 1: Guardrail against accidental dangerous API use by LLM-generated code. Not a full sandbox — indirect calls (e.g. via reflection) are not blocked. (recommended)",
                 DynamicCodeSecurityLevel.FullAccess => "Level 2: All APIs available (use with caution)",
                 _ => "Unknown level"
             };
