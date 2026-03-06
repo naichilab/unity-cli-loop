@@ -8,7 +8,7 @@ namespace io.github.hatayama.uLoopMCP
 {
     /// <summary>
     /// Integrated Dynamic Code Execution Implementation
-    /// Related Classes: RoslynCompiler, SecurityValidator, CommandRunner
+    /// Related Classes: UnityAssemblyBuilderCompilationService, TextBasedDangerousApiChecker, CommandRunner
     /// </summary>
     public class DynamicCodeExecutor : IDynamicCodeExecutor
     {
@@ -287,7 +287,7 @@ namespace io.github.hatayama.uLoopMCP
                 };
             }
 
-            // Since detailed checks are performed by SecurityValidator during Roslyn compilation
+            // Detailed pre-compile checks are performed by TextBasedDangerousApiChecker (Restricted mode)
             // Pass through with only basic validation here
 
             return new SecurityValidationResult
@@ -389,7 +389,7 @@ namespace io.github.hatayama.uLoopMCP
         }
 
         /// <summary>
-        /// Convert CompilationResult.SecurityViolations to SecurityValidator's SecurityViolation
+        /// Convert CompilationResult.SecurityViolations to ExecutionResult SecurityViolation format
         /// </summary>
         private List<SecurityViolation> ConvertToSecurityViolations(List<SecurityViolation> compilationSecurityViolations)
         {

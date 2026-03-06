@@ -27,7 +27,7 @@ namespace io.github.hatayama.uLoopMCP
             CancellationToken cancellationToken = default,
             bool compileOnly = false)
         {
-            return CreateRoslynRequiredResult();
+            return CreateCompilerNotRegisteredResult();
         }
 
         /// <summary>Execute code asynchronously (always returns a compilation provider not registered error)</summary>
@@ -38,7 +38,7 @@ namespace io.github.hatayama.uLoopMCP
             CancellationToken cancellationToken = default,
             bool compileOnly = false)
         {
-            return await Task.FromResult(CreateRoslynRequiredResult());
+            return await Task.FromResult(CreateCompilerNotRegisteredResult());
         }
 
         /// <summary>Retrieve execution statistics</summary>
@@ -55,7 +55,7 @@ namespace io.github.hatayama.uLoopMCP
             };
         }
 
-        private ExecutionResult CreateRoslynRequiredResult()
+        private ExecutionResult CreateCompilerNotRegisteredResult()
         {
             return new ExecutionResult
             {

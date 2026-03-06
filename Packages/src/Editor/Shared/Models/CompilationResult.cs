@@ -6,7 +6,7 @@ namespace io.github.hatayama.uLoopMCP
     /// <summary>
     /// Compilation Result
     /// 
-    /// Related Class: RoslynCompiler
+    /// Related Class: UnityAssemblyBuilderCompilationService
     /// </summary>
     public class CompilationResult
     {

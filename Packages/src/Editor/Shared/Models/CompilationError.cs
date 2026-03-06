@@ -3,7 +3,7 @@ namespace io.github.hatayama.uLoopMCP
     /// <summary>
     /// Represents a compilation error during code compilation
     /// 
-    /// Related Classes: RoslynCompiler, CompilationResult
+    /// Related Classes: UnityAssemblyBuilderCompilationService, CompilationResult
     /// </summary>
     public class CompilationError
     {

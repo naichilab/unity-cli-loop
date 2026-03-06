@@ -24,7 +24,7 @@ namespace io.github.hatayama.uLoopMCP
     {
         /// <summary>
         /// Retrieve Assembly Name List Based on Security Level.
-        /// This list is intended for diagnostics and tests. It is not applied by RoslynCompiler
+        /// This list is intended for diagnostics and tests. It is not applied by UnityAssemblyBuilderCompilationService
         /// to include/exclude references during compilation.
         /// </summary>
         public static IReadOnlyList<string> GetAssemblies(DynamicCodeSecurityLevel level)
@@ -86,7 +86,7 @@ namespace io.github.hatayama.uLoopMCP
         /// <summary>
         /// Check if the Specified Assembly is Allowed by Security Level
         /// (Maintained for Backward Compatibility)
-        /// Note: This helper is not enforced by RoslynCompiler during reference construction.
+        /// Note: This helper is not enforced by UnityAssemblyBuilderCompilationService during reference construction.
         /// </summary>
         public static bool IsAssemblyAllowed(string assemblyName, DynamicCodeSecurityLevel level)
         {

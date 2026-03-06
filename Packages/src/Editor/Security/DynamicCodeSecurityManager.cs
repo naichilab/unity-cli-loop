@@ -4,7 +4,7 @@ namespace io.github.hatayama.uLoopMCP
 {
     /// <summary>
     /// Security management utility for ExecuteDynamicCodeTool
-    /// Related Classes: DynamicCodeSecurityLevel, AssemblyReferencePolicy, RoslynCompiler
+    /// Related Classes: DynamicCodeSecurityLevel, AssemblyReferencePolicy, UnityAssemblyBuilderCompilationService
     /// </summary>
     public static class DynamicCodeSecurityManager
     {

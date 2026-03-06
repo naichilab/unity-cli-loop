@@ -5,7 +5,7 @@ namespace io.github.hatayama.uLoopMCP
 {
     /// <summary>
     /// テキストベースの危険API検出器
-    /// Roslynが利用できない環境でRestricted モードのセキュリティチェックを行う
+    /// AssemblyBuilderベースの動的コード実行でRestricted モードのセキュリティチェックを行う
     /// </summary>
     internal static class TextBasedDangerousApiChecker
     {

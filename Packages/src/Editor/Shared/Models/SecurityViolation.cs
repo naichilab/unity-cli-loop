@@ -2,7 +2,7 @@ namespace io.github.hatayama.uLoopMCP
 {
     /// <summary>
     /// Security Violation
-    /// Related Classes: SecurityValidator, SecuritySyntaxWalker
+    /// Related Classes: TextBasedDangerousApiChecker
     /// </summary>
     public class SecurityViolation
     {

@@ -6,7 +6,7 @@ namespace io.github.hatayama.uLoopMCP
     /// <summary>
     /// Interface for dynamic code execution integration functionality
 
-    /// Related classes: DynamicCodeExecutor, RoslynCompiler, SecurityValidator, CommandRunner
+    /// Related classes: DynamicCodeExecutor, UnityAssemblyBuilderCompilationService, TextBasedDangerousApiChecker, CommandRunner
     /// </summary>
     public interface IDynamicCodeExecutor
     {

@@ -8,7 +8,7 @@ namespace io.github.hatayama.uLoopMCP.Factory
     {
         /// <summary>
         /// Returns a stub when the compilation provider is not registered.
-        /// The main editor assembly must stay independent from Roslyn implementation details.
+        /// The main editor assembly must stay independent from compilation provider implementation details.
         /// </summary>
         public static IDynamicCodeExecutor Create(DynamicCodeSecurityLevel securityLevel)
         {

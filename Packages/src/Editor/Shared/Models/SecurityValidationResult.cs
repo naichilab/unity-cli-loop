@@ -7,7 +7,7 @@ namespace io.github.hatayama.uLoopMCP
     /// <summary>
     /// Security Validation Result
     /// 
-    /// Related Class: SecurityValidator
+    /// Related Class: TextBasedDangerousApiChecker
     /// </summary>
     public class SecurityValidationResult
     {
