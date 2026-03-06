@@ -267,7 +267,7 @@ namespace io.github.hatayama.uLoopMCP
         // Private Helper Methods
         private SecurityValidationResult ValidateCodeSecurity(string code, string correlationId)
         {
-            // In Restricted Mode, defer security validation to Roslyn
+            // In Restricted Mode, TextBasedDangerousApiChecker handles pre-compile validation
             // Perform only basic checks here (such as empty string check)
             if (string.IsNullOrWhiteSpace(code))
             {

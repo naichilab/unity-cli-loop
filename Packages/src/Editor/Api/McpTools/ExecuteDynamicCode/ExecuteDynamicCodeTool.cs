@@ -145,9 +145,9 @@ See examples at {project_root}/.claude/skills/uloop-execute-dynamic-code/example
                     parametersArray = parameters.Parameters.Values.ToArray();
                 }
                 
-                // Code execution (RoslynCompiler performs diagnostic-driven modifications)
+                // Code execution (AssemblyBuilder compiles the wrapped code)
                 ExecutionResult executionResult = await _executor.ExecuteCodeAsync(
-                    originalCode, // Use original code (RoslynCompiler will perform modifications)
+                    originalCode,
                     "DynamicCommand",
                     parametersArray,
                     cancellationToken,
